@@ -4,22 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>WANNA EAT MORE | 无尽食欲</title>
-    
-    <!-- Aesthetic Favicon: Stylized Maw -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230c0a09' stroke='%23450a0a' stroke-width='2'/><path d='M25 45 L50 30 L75 45 L75 55 L50 70 L25 55 Z' fill='%23450a0a'/><path d='M25 45 L35 55 L50 40 L65 55 L75 45' fill='none' stroke='%23ef4444' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/><path d='M25 55 L35 45 L50 60 L65 45 L75 55' fill='none' stroke='%23ef4444' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/></svg>">
-    
-    <!-- Meta Tags for Vercel Deployment & SEO -->
-    <meta name="description" content="克苏鲁神话主题阅读网页 - 《无尽食欲》" />
-    <meta name="theme-color" content="#0c0a09" />
-    <meta property="og:title" content="WANNA EAT MORE | 无尽食欲" />
-    <meta property="og:description" content="在现代日本，谁都会肩负着过度的压力... 没人知道那是不是以人类精神扭曲之处为食的怪物所为。" />
-    <meta property="og:type" content="website" />
-    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩸</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
     <script>
       tailwind.config = {
         theme: {
@@ -88,16 +77,29 @@
       ::-webkit-scrollbar-thumb { background: #292524; border-radius: 2px; }
       ::-webkit-scrollbar-thumb:hover { background: #ef4444; }
 
+      /* 针对现代浏览器优化的首字下沉 */
       .drop-cap::first-letter {
+        -webkit-initial-letter: 2;
+        initial-letter: 2;
         float: left;
         font-family: 'Noto Serif SC', serif;
-        font-size: 5.2rem;
-        line-height: 0.7;
-        padding-right: 0.8rem;
-        padding-top: 0.6rem;
         color: #ef4444;
         font-weight: 900;
-        text-shadow: 4px 4px 0px rgba(0,0,0,0.8);
+        margin-right: 0.75rem;
+        margin-top: 0.15em;
+        padding: 0;
+        line-height: 1;
+        text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
+      }
+
+      /* Fallback for browsers not supporting initial-letter */
+      @supports not (initial-letter: 2) and not (-webkit-initial-letter: 2) {
+        .drop-cap::first-letter {
+          font-size: 3.8em;
+          line-height: 0.8;
+          padding-top: 0.1em;
+          margin-bottom: -0.1em;
+        }
       }
 
       /* 平滑过渡 */

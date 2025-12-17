@@ -11,23 +11,23 @@ const CollapsibleSection: React.FC<{ title: string, content: string[] }> = ({ ti
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="my-12 border border-white/5 rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.6)] overflow-hidden transition-all duration-500 bg-white/[0.02] backdrop-blur-2xl">
+    <div className="my-10 border border-white/5 rounded-xl shadow-lg overflow-hidden transition-all duration-300 bg-paper-900/40">
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-8 md:p-10 hover:bg-white/[0.03] transition-colors text-left"
+        className="w-full flex items-center justify-between p-6 md:p-8 hover:bg-white/[0.02] transition-colors text-left border-b border-transparent"
       >
-        <div className="flex items-center space-x-6">
-            <Bookmark size={24} className={`${isOpen ? 'text-blood-500' : 'text-ink-300 opacity-40'}`} />
-            <span className="font-serif font-semibold text-ink-50 text-2xl lg:text-3xl tracking-tight leading-none">{title}</span>
+        <div className="flex items-center space-x-5">
+            <Bookmark size={20} className={`${isOpen ? 'text-blood-500' : 'text-ink-300 opacity-30'}`} />
+            <span className="font-serif font-semibold text-ink-50 text-xl lg:text-2xl tracking-tight leading-tight">{title}</span>
         </div>
-        <div className={`p-2.5 rounded-full border transition-all duration-500 ${isOpen ? 'bg-blood-900 border-blood-500 text-white' : 'border-white/10 text-ink-300'}`}>
-          {isOpen ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
+        <div className={`p-1.5 rounded-full border transition-all duration-300 ${isOpen ? 'bg-blood-900 border-blood-500 text-white' : 'border-white/10 text-ink-300'}`}>
+          {isOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
         </div>
       </button>
-      <div className={`transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${isOpen ? 'max-h-[5000px] opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
-        <div className="p-10 lg:p-16 space-y-12 text-ink-100 border-t border-white/5 leading-loose text-[1.15rem] lg:text-[1.25rem] font-serif font-light tracking-wide">
+      <div className={`transition-all duration-500 ease-out ${isOpen ? 'max-h-[5000px] opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
+        <div className="p-8 lg:p-12 space-y-10 text-ink-100 border-t border-white/5 leading-loose text-[1.1rem] lg:text-[1.2rem] font-serif font-light tracking-wide bg-black/20">
           {content.map((p, i) => (
-            <p key={i} className="hover:text-white transition-colors duration-500">{highlightText(p)}</p>
+            <p key={i} className="hover:text-white transition-colors duration-300">{highlightText(p)}</p>
           ))}
         </div>
       </div>
@@ -49,7 +49,6 @@ const highlightText = (text: string) => {
             return <strong key={i} className="text-blood-500 font-bold tracking-tight">{part}</strong>;
         }
         if (part.startsWith('【') && part.endsWith('】')) {
-            // 移除下划线，改用颜色强调
             return <span key={i} className="text-blood-500 font-bold drop-shadow-[0_0_8px_rgba(239,68,68,0.2)]">{part}</span>;
         }
         return part;
@@ -58,21 +57,21 @@ const highlightText = (text: string) => {
 
 export const ChapterView: React.FC<ChapterViewProps> = ({ chapter }) => {
   return (
-    <div className="max-w-4xl mx-auto py-24 px-8 lg:px-24 animate-in fade-in slide-in-from-bottom-12 duration-1000">
+    <div className="max-w-4xl mx-auto py-16 px-6 sm:px-12 lg:px-20 animate-in fade-in slide-in-from-bottom-8 duration-700">
       {/* 章节头部 */}
-      <div className="mb-32 relative">
-        <div className="flex items-center space-x-6 text-[11px] uppercase tracking-[0.8em] text-blood-500 mb-8 font-black opacity-50">
-           <span className="w-12 h-[1px] bg-blood-600"></span>
+      <div className="mb-20 relative">
+        <div className="flex items-center space-x-4 text-[10px] uppercase tracking-[0.5em] text-blood-500 mb-6 font-black opacity-60">
+           <span className="w-8 h-px bg-blood-600"></span>
            <span>{chapter.category}</span>
         </div>
-        <h2 className="text-6xl md:text-8xl font-serif font-black text-white tracking-tightest leading-[0.95] mb-12 drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-black text-white tracking-tightest leading-[1.1] mb-8 drop-shadow-2xl max-w-full overflow-hidden truncate">
           {chapter.title}
         </h2>
-        <div className="h-1.5 w-32 bg-gradient-to-r from-blood-600 to-transparent rounded-full shadow-[0_0_20px_rgba(239,68,68,0.3)]"></div>
+        <div className="h-1 w-24 bg-gradient-to-r from-blood-600 to-transparent rounded-full opacity-50"></div>
       </div>
 
-      {/* 正文排版：字号调整为符合经典阅读美学的比例 */}
-      <div className="space-y-16 text-[1.2rem] md:text-[1.35rem] leading-loose text-ink-100 font-serif font-light tracking-[0.035em] antialiased">
+      {/* 正文排版 */}
+      <div className="space-y-12 text-[1.1rem] sm:text-[1.25rem] leading-loose text-ink-100 font-serif font-light tracking-wide antialiased">
         {chapter.content.map((block, index) => {
           if (typeof block === 'string') {
             const isFirstParagraph = index === 0;
@@ -80,9 +79,9 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ chapter }) => {
             // 四级标题：作为小节标题
             if (block.startsWith('####')) {
                return (
-                 <h3 key={index} className="text-3xl md:text-4xl font-semibold text-blood-500 mt-36 mb-16 font-serif flex items-center group">
-                   <div className="relative mr-6 shrink-0">
-                      <Sparkles size={28} className="text-blood-900/50 group-hover:text-blood-500 transition-all duration-700" />
+                 <h3 key={index} className="text-2xl md:text-3xl font-semibold text-blood-500 mt-24 mb-10 font-serif flex items-center group">
+                   <div className="relative mr-4 shrink-0">
+                      <Sparkles size={20} className="text-blood-900/50 group-hover:text-blood-500 transition-all duration-500" />
                    </div>
                    <span className="tracking-tight">{block.replace('####', '').trim()}</span>
                  </h3>
@@ -92,8 +91,8 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ chapter }) => {
             // 分割线
             if (block === '---') {
                 return (
-                  <div key={index} className="flex justify-center items-center my-36 opacity-10">
-                    <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white to-transparent"></div>
+                  <div key={index} className="flex justify-center items-center my-24 opacity-10">
+                    <div className="h-px w-full bg-gradient-to-r from-transparent via-white to-transparent"></div>
                   </div>
                 );
             }
@@ -101,10 +100,10 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ chapter }) => {
             // 数字分割
             if (/^\d+$/.test(block)) {
                 return (
-                    <div key={index} className="flex justify-center items-center my-32">
-                        <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-white/5"></div>
-                        <span className="mx-16 text-xl text-ink-300 font-mono font-bold tracking-[1.2em] opacity-40">{block}</span>
-                        <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-white/5"></div>
+                    <div key={index} className="flex justify-center items-center my-20">
+                        <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/5"></div>
+                        <span className="mx-10 text-lg text-ink-300 font-mono font-bold tracking-[0.8em] opacity-30">{block}</span>
+                        <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/5"></div>
                     </div>
                 )
             }
@@ -119,15 +118,15 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ chapter }) => {
             return <StatBlock key={index} data={block.data} />;
           } else if (block.type === 'list') {
             return (
-              <div key={index} className="my-24 bg-white/[0.02] p-12 lg:p-20 rounded-3xl border-l-[12px] border-blood-600 shadow-[0_40px_100px_rgba(0,0,0,0.8)] relative overflow-hidden ring-1 ring-white/5 group">
-                <div className="absolute -top-16 -right-16 text-blood-950/20 pointer-events-none transform rotate-12 transition-transform duration-1000 group-hover:rotate-6 group-hover:scale-110">
-                    <ScrollText size={380} />
+              <div key={index} className="my-16 bg-white/[0.01] p-8 md:p-12 rounded-2xl border-l-8 border-blood-600 shadow-xl relative overflow-hidden group">
+                <div className="absolute -top-12 -right-12 text-blood-950/10 pointer-events-none transform rotate-12 transition-transform duration-1000 group-hover:rotate-6">
+                    <ScrollText size={240} />
                 </div>
-                <ul className="space-y-12 relative z-10">
+                <ul className="space-y-8 relative z-10">
                   {block.items.map((item, idx) => (
-                    <li key={idx} className="flex items-start space-x-8 text-ink-50 group/item">
-                      <span className="text-blood-500 font-black mt-2 group-hover/item:scale-125 transition-all duration-500 text-3xl drop-shadow-[0_0_15px_rgba(239,68,68,0.5)]">◆</span>
-                      <span className="flex-1 text-2xl lg:text-3xl font-medium leading-snug tracking-tight">{highlightText(item)}</span>
+                    <li key={idx} className="flex items-start space-x-6 text-ink-50">
+                      <span className="text-blood-500 font-black mt-1.5 transition-all duration-300 text-xl">◆</span>
+                      <span className="flex-1 text-xl lg:text-2xl font-medium leading-snug tracking-tight">{highlightText(item)}</span>
                     </li>
                   ))}
                 </ul>
