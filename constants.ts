@@ -16,6 +16,10 @@ import { section12 } from './data/chapters/section-12';
 export const APP_TITLE = "WANNA EAT MORE";
 export const APP_SUBTITLE = "无尽食欲";
 export const AUTHOR_INFO = "著：内山靖二郎 译：艾德琳";
+export const SCENARIO_STATS = {
+  players: "2~4 名玩家",
+  duration: "3~4 小时"
+};
 
 export const CONTENT: Chapter[] = [
   intro,

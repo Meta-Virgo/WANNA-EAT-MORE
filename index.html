@@ -47,6 +47,20 @@
             },
             lineHeight: {
               reading: '2.1',
+            },
+            animation: {
+              'fade-in': 'fadeIn 1s ease-out forwards',
+              'slide-up': 'slideUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              slideUp: {
+                '0%': { transform: 'translateY(30px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              }
             }
           }
         }
@@ -73,7 +87,6 @@
       ::-webkit-scrollbar-thumb { background: #292524; border-radius: 10px; }
       ::-webkit-scrollbar-thumb:hover { background: #ef4444; }
 
-      /* 针对思源宋体精准调教的首字下沉 */
       .drop-cap::first-letter {
         float: left;
         font-family: 'Noto Serif SC', serif;
@@ -90,6 +103,11 @@
       p {
         text-align: justify;
         text-justify: inter-character;
+      }
+
+      .custom-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: #292524 #0c0a09;
       }
     </style>
     <script type="importmap">
