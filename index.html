@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>WANNA EAT MORE | 无尽食欲</title>
-    <!-- Favicon: 更换为餐具图标 -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍽️</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,13 +43,10 @@
             letterSpacing: {
               tightest: '-.075em',
               tighter: '-.05em',
-              wide: '.025em',
-              wider: '.05em',
-              widest: '.25em',
+              reading: '0.05em',
             },
             lineHeight: {
-              relaxed: '1.8',
-              loose: '2.2',
+              reading: '2.1',
             }
           }
         }
@@ -63,40 +59,37 @@
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
       }
-      /* 全局胶片噪点 */
       body::before {
         content: "";
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
-        opacity: 0.05;
+        opacity: 0.04;
         pointer-events: none;
         z-index: 9999;
         background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
       }
-      ::-webkit-scrollbar { width: 4px; }
+      ::-webkit-scrollbar { width: 5px; }
       ::-webkit-scrollbar-track { background: #0c0a09; }
-      ::-webkit-scrollbar-thumb { background: #292524; border-radius: 2px; }
+      ::-webkit-scrollbar-thumb { background: #292524; border-radius: 10px; }
       ::-webkit-scrollbar-thumb:hover { background: #ef4444; }
 
-      /* 极致校准的首字下沉 */
+      /* 针对思源宋体精准调教的首字下沉 */
       .drop-cap::first-letter {
         float: left;
         font-family: 'Noto Serif SC', serif;
         color: #ef4444;
         font-weight: 900;
-        /* 使用相对单位并微调 margin 补偿中文字体的默认内边距 */
-        font-size: 3.6em;
-        line-height: 0.85;
-        margin-right: 0.25rem;
-        margin-top: 0.05em;
-        padding-top: 0.1em;
-        padding-right: 0.1em;
-        text-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+        font-size: 3.85em;
+        line-height: 0.82;
+        margin-right: 0.45rem;
+        margin-top: 0.08em;
+        padding: 0.05em 0.05em 0 0;
+        text-shadow: 0 10px 30px rgba(239, 68, 68, 0.25);
       }
 
-      /* 平滑过渡 */
-      * {
-        transition: background-color 0.3s ease, border-color 0.3s ease;
+      p {
+        text-align: justify;
+        text-justify: inter-character;
       }
     </style>
     <script type="importmap">
@@ -113,9 +106,8 @@
 }
 </script>
   </head>
-  <body class="bg-paper-950 selection:bg-blood-900 selection:text-white overflow-x-hidden">
+  <body class="bg-paper-950 selection:bg-blood-900 selection:text-white">
     <div id="root"></div>
-    <!-- 显式引入 index.tsx 确保在部署环境能正常加载渲染 -->
     <script type="module" src="./index.tsx"></script>
   </body>
 </html>
