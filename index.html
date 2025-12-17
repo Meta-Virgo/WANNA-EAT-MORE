@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>WANNA EAT MORE | 无尽食欲</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩸</text></svg>">
+    <!-- Favicon: 更换为餐具图标 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍽️</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,7 +63,7 @@
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
       }
-      /* 全局胶片噪点与纹理 */
+      /* 全局胶片噪点 */
       body::before {
         content: "";
         position: fixed;
@@ -77,29 +78,20 @@
       ::-webkit-scrollbar-thumb { background: #292524; border-radius: 2px; }
       ::-webkit-scrollbar-thumb:hover { background: #ef4444; }
 
-      /* 针对现代浏览器优化的首字下沉 */
+      /* 极致校准的首字下沉 */
       .drop-cap::first-letter {
-        -webkit-initial-letter: 2;
-        initial-letter: 2;
         float: left;
         font-family: 'Noto Serif SC', serif;
         color: #ef4444;
         font-weight: 900;
-        margin-right: 0.75rem;
-        margin-top: 0.15em;
-        padding: 0;
-        line-height: 1;
-        text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
-      }
-
-      /* Fallback for browsers not supporting initial-letter */
-      @supports not (initial-letter: 2) and not (-webkit-initial-letter: 2) {
-        .drop-cap::first-letter {
-          font-size: 3.8em;
-          line-height: 0.8;
-          padding-top: 0.1em;
-          margin-bottom: -0.1em;
-        }
+        /* 使用相对单位并微调 margin 补偿中文字体的默认内边距 */
+        font-size: 3.6em;
+        line-height: 0.85;
+        margin-right: 0.25rem;
+        margin-top: 0.05em;
+        padding-top: 0.1em;
+        padding-right: 0.1em;
+        text-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
       }
 
       /* 平滑过渡 */
@@ -107,18 +99,23 @@
         transition: background-color 0.3s ease, border-color 0.3s ease;
       }
     </style>
-  <script type="importmap">
+    <script type="importmap">
 {
   "imports": {
     "react": "https://esm.sh/react@^19.2.3",
+    "react-dom": "https://esm.sh/react-dom@^19.2.3",
+    "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client",
+    "react/jsx-runtime": "https://esm.sh/react@^19.2.3/jsx-runtime",
+    "lucide-react": "https://esm.sh/lucide-react@^0.475.0",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.561.0"
+    "react/": "https://esm.sh/react@^19.2.3/"
   }
 }
 </script>
-</head>
+  </head>
   <body class="bg-paper-950 selection:bg-blood-900 selection:text-white overflow-x-hidden">
     <div id="root"></div>
+    <!-- 显式引入 index.tsx 确保在部署环境能正常加载渲染 -->
+    <script type="module" src="./index.tsx"></script>
   </body>
 </html>
